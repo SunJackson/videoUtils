@@ -7,7 +7,6 @@ process_video_path = './video/2019特效最逼真科幻片，每帧经费都在�
 
 
 def image2handler(image):
-    # a = np.asarray(Image.open(image_path).convert('L')).astype('float')
     a = np.asarray(image.convert('L')).astype('float')
     depth = 20.  # (0-100)
     grad = np.gradient(a)  # 取图像灰度的梯度值

@@ -8,9 +8,6 @@ process_video_path = './video/2019特效最逼真科幻片，每帧经费都在�
 ascii_char = list("$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:oa+>!:+. ")
 
 
-# ascii_char = list("MNHQ$OC67+>!:-. ")
-# ascii_char = list("MNHQ$OC67)oa+>!:+. ")
-
 # 将像素转换为ascii码
 def get_char(r, g, b, alpha=256):
     if alpha == 0:
