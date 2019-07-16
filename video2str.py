@@ -23,7 +23,7 @@ def get_char(r, g, b, alpha=256):
 
 # 将txt转换为图片
 def image2str(file_name):
-    im = Image.open(file_name).convert('RGB')
+    im = file_name.convert('RGB')
     # gif拆分后的图像，需要转换，否则报错，由于gif分割后保存的是索引颜色
     raw_width = im.width
     raw_height = im.height
@@ -60,7 +60,7 @@ def image2str(file_name):
         dr.text((y, x), txt[i], fill=colors[i])
         y += font_w
 
-    im_txt.save('.image2str_tmp~.jpg')
+    return im_txt
 
 
 videoCapture = cv2.VideoCapture()
@@ -75,12 +75,12 @@ print("fps=", fps, "frames=", frames, 'size=', (frameW, frameH))
 
 video = cv2.VideoWriter(save_video_path, 0, fps, (frameW, frameH))
 
-for i in range(1280):
-    tmp_path = '.image_tmp~.jpg'
+for i in range(frames):
     ret, frame = videoCapture.read()
-    cv2.imwrite(tmp_path, frame)
-    image2str(tmp_path)
-    video.write(cv2.imread('.image2str_tmp~.jpg'))
+    frame_image = Image.fromarray(frame.astype('uint8'))  # frame to image
+    str_image = image2str(frame_image)
+    cv2_img = cv2.cvtColor(np.asarray(str_image), cv2.COLOR_RGB2BGR) # pil to cv2
+    video.write(cv2_img)
     print('process {}%'.format(round(i / frames, 4)))
 cv2.destroyAllWindows()
 video.release()

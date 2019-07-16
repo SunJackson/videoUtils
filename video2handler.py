@@ -6,8 +6,9 @@ save_video_path = './video/video.avi'
 process_video_path = './video/2019特效最逼真科幻片，每帧经费都在燃烧，看完才发现不是实景.mp4'
 
 
-def image2handler(image_path):
-    a = np.asarray(Image.open(image_path).convert('L')).astype('float')
+def image2handler(image):
+    # a = np.asarray(Image.open(image_path).convert('L')).astype('float')
+    a = np.asarray(image.convert('L')).astype('float')
     depth = 20.  # (0-100)
     grad = np.gradient(a)  # 取图像灰度的梯度值
     grad_x, grad_y = grad  # 分别取横纵图像梯度值
@@ -28,7 +29,8 @@ def image2handler(image_path):
     b = b.clip(0, 255)
 
     im = Image.fromarray(b.astype('uint8'))  # 重构图像
-    im.save('.processed_picture_tmp~.jpg')
+    return im
+
 
 
 videoCapture = cv2.VideoCapture()
@@ -44,11 +46,11 @@ print("fps=", fps, "frames=", frames, 'size=', (frameW, frameH))
 video = cv2.VideoWriter(save_video_path, 0, fps, (frameW, frameH))
 
 for i in range(frames):
-    tmp_path = '.tmp~.jpg'
     ret, frame = videoCapture.read()
-    cv2.imwrite(tmp_path, frame)
-    image2handler(tmp_path)
-    video.write(cv2.imread('.processed_picture_tmp~.jpg'))
+    frame_image = Image.fromarray(frame.astype('uint8')) # frame to image
+    handler_image = image2handler(frame_image)
+    cv2_img = cv2.cvtColor(np.asarray(handler_image), cv2.COLOR_RGB2BGR) # pil to cv2
+    video.write(cv2_img)
     print('process {}%'.format(round(i / frames, 4)))
 cv2.destroyAllWindows()
 video.release()
