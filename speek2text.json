@@ -1,0 +1,8 @@
+{
+  "apikey": "MqLFvR6EZHC7AnD-AKMoXB1MGkqsgIhxwIMPNfwPFDPW",
+  "iam_apikey_description": "Auto-generated for key a779bde6-1660-461e-81c6-ce183552895a",
+  "iam_apikey_name": "Auto-generated service credentials",
+  "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+  "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/6230b24f150c4ca0b8472dbee2badd69::serviceid:ServiceId-55716c23-8e0b-40d9-a220-a31c19f8cff6",
+  "url": "https://gateway-tok.watsonplatform.net/speech-to-text/api"
+}

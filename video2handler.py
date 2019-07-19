@@ -3,7 +3,7 @@ from PIL import Image
 import numpy as np
 
 save_video_path = './video/video.avi'
-process_video_path = './video/2019特效最逼真科幻片，每帧经费都在燃烧，看完才发现不是实景.mp4'
+process_video_path = '/home/sun/Videos/What if You Swallowed the Most Venomous Snake Ever.mp4'
 
 
 def image2handler(image):
@@ -31,7 +31,6 @@ def image2handler(image):
     return im
 
 
-
 videoCapture = cv2.VideoCapture()
 videoCapture.open(process_video_path)
 
@@ -46,10 +45,10 @@ video = cv2.VideoWriter(save_video_path, 0, fps, (frameW, frameH))
 
 for i in range(frames):
     ret, frame = videoCapture.read()
-    frame_image = Image.fromarray(frame.astype('uint8')) # frame to image
+    frame_image = Image.fromarray(frame.astype('uint8'))  # frame to image
     handler_image = image2handler(frame_image)
-    cv2_img = cv2.cvtColor(np.asarray(handler_image), cv2.COLOR_RGB2BGR) # pil to cv2
+    cv2_img = cv2.cvtColor(np.asarray(handler_image), cv2.COLOR_RGB2BGR)  # pil to cv2
     video.write(cv2_img)
-    print('process {}%'.format(round(i / frames, 4)))
+    print('process {}%'.format(round(i / frames, 4) * 100))
 cv2.destroyAllWindows()
 video.release()
