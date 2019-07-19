@@ -1,1 +1,1 @@
-curl -X POST -u "apikey:MqLFvR6EZHC7AnD-AKMoXB1MGkqsgIhxwIMPNfwPFDPW" --header "Content-Type: audio/flac" --data-binary @/home/sun/Videos/audio.wav "https://gateway-tok.watsonplatform.net/speech-to-text/api/v1/recognize?timestamps=true&max_alternatives=3"
+curl -X POST -u "apikey:MqLFvR6EZHC7AnD-AKMoXB1MGkqsg" --header "Content-Type: audio/flac" --data-binary @/home/sun/Videos/audio.wav "https://gateway-tok.watsonplatform.net/speech-to-text/api/v1/recognize?timestamps=true&max_alternatives=3" IhxwIMPNfwPFDPW
